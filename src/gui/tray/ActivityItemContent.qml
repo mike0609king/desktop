@@ -14,6 +14,9 @@ import com.nextcloud.desktopclient
 RowLayout {
     id: root
 
+    property color regularTextColor: palette.windowText
+    property color buttonBackgroundColor: palette.button
+
     property variant activityData: {{}}
 
     property variant activity: {{}}
@@ -141,6 +144,7 @@ RowLayout {
                 maximumLineCount: 2
                 font.pixelSize: Style.topLinePixelSize
                 visible: text !== ""
+                color: root.regularTextColor
             }
 
             Item {
@@ -157,6 +161,7 @@ RowLayout {
                 text: root.activityData.dateTime
                 font.pixelSize: Style.subLinePixelSize
                 visible: text !== ""
+                color: root.regularTextColor
             }
 
             Row {
@@ -172,6 +177,12 @@ RowLayout {
                     icon.source: "image://svgimage-custom-color/more.svg/" + palette.buttonText
                     icon.width: Style.activityListButtonIconSize
                     icon.height: Style.activityListButtonIconSize
+
+                    background: Rectangle {
+                        width: parent.width
+                        height: parent.height
+                        color: buttonBackgroundColor
+                    }
 
                     ToolTip {
                         text: qsTr("Open file details")
